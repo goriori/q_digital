@@ -1,0 +1,46 @@
+.content {
+    padding-top: 185px;
+    margin-left: 230px;
+
+}
+
+.content__container>.content__title {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 90px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+
+.timer__items {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.timer__items>.timer__item {
+    background-color: #121212;
+    margin-right: 32px;
+    padding: 20px 30px 20px 30px;
+}
+
+.timer__item>h3 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.timer__item>p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}

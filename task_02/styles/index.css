@@ -1,0 +1,21 @@
+* {
+    padding:0px;
+    margin:0px;
+}
+
+
+body {
+    background: black;
+    color:white;
+    font-family: Roboto;
+    background-image: url('/task_02/assets/images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    padding-left: 80px;
+    padding-right: 60px;
+    padding-top: 38px;
+    
+}
