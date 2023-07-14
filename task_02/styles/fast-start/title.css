@@ -1,0 +1,28 @@
+.title__head {
+    font-size: 41px;
+    font-weight: 700;
+    line-height: 67px;
+    letter-spacing: 0em;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.title__head>.title__elipse {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: purple;
+    margin-right: 30px;
+}
+
+.title__desription {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: gray;
+
+}

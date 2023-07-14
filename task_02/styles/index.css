@@ -12,7 +12,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+button {
+    cursor: pointer;
+}
 .container {
     padding-left: 80px;
     padding-right: 60px;
