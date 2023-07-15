@@ -1,5 +1,8 @@
 .get__professional {
-    margin-top: 200px;
+    margin-top: 160px;
+    padding-left: 80px;
+    padding-right: 60px;
+    padding-top: 38px;
 }
 
 
@@ -46,7 +49,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   margin-bottom: 55px;
+   margin-bottom: 60px;
 }
 .get__professional__item__description {
     font-size: 16px;

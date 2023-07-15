@@ -1,6 +1,9 @@
 .about {
+    padding-left: 80px;
+    padding-right: 60px;
+    padding-top: 270px;
     display: flex;
-    margin-top: 270px;
+    
     margin-left: 230px;
 }
 

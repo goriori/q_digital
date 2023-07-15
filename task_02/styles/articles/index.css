@@ -1,4 +1,7 @@
 .articles {
+    padding-left: 80px;
+    padding-right: 60px;
+    padding-top: 38px;
     max-width: 554px;
     max-height: 419px;
     margin: 0 auto;
