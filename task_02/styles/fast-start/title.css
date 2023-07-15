@@ -6,7 +6,7 @@
     text-align: left;
     display: flex;
     align-items: center;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }
 
 .title__head>.title__elipse {
@@ -17,6 +17,10 @@
     margin-right: 30px;
 }
 
+.title__head > img {
+    max-width: 127px;
+    height: 127px;
+}
 .title__desription {
     font-size: 16px;
     font-weight: 400;

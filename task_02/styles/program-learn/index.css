@@ -1,0 +1,198 @@
+.programs__learn {
+
+    margin-top: 50px;
+    text-align: center;
+
+}
+
+
+.programs__learn>img {
+    margin-bottom: 20px;
+}
+
+.programs__learn__progress {
+    width: 120px;
+    height: 120px;
+}
+
+.programs__learn__title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 67px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 30px;
+
+}
+
+.programs__learn__subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: center;
+    max-width: 411px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    color: gray;
+
+}
+
+.programs__learn__timeline__items {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 550px;
+    left: 605px;
+
+}
+
+
+.programs__learn__timeline__items::before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(94.26deg, #C89AFC 9.51%, #7C6AFA 90.23%);
+    width: 5px;
+    height: 700px;
+}
+
+.programs__learn__timeline__item {
+    position: relative;
+}
+
+
+.programs__learn__timeline__item>p {
+    color: gray;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    margin-bottom: 20px;
+}
+
+
+/* 1 */
+
+.programs__learn__timeline__item:nth-child(1) {
+    text-align: right;
+    margin-bottom: 120px;
+    margin-right: 130px;
+    line-height: 30px;
+
+}
+
+.programs__learn__timeline__item:nth-child(1)::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    right: -63px;
+    background-color: #7C6AFA;
+}
+
+/* 3 */
+
+.programs__learn__timeline__item:nth-child(3) {
+    text-align: right;
+    margin-bottom: 120px;
+    margin-right: 130px;
+    line-height: 30px;
+
+}
+
+.programs__learn__timeline__item:nth-child(3)::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    right: -63px;
+    background-color: #7C6AFA;
+}
+
+
+/* 5 */
+.programs__learn__timeline__item:nth-child(5) {
+    text-align: right;
+    margin-bottom: 120px;
+    margin-right: 130px;
+    line-height: 30px;
+}
+
+.programs__learn__timeline__item:nth-child(5)::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    right: -63px;
+    background-color: #7C6AFA;
+}
+
+/* 7 */
+
+.programs__learn__timeline__item:nth-child(7) {
+    text-align: right;
+    margin-right: 330px;
+    line-height: 30px;
+}
+
+
+.programs__learn__timeline__item:nth-child(7)::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    top:20px;
+    right: -60px;
+    background-color: #7C6AFA;
+}
+
+
+
+
+
+.programs__learn__timeline__item:nth-child(2) {
+    text-align: left;
+    margin-bottom: 120px;
+    line-height: 30px;
+}
+.programs__learn__timeline__item:nth-child(2)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    top: 50px;
+    left: -62px;
+    background-color: #7C6AFA;
+}
+
+.programs__learn__timeline__item:nth-child(4) {
+    text-align: left;
+    margin-bottom: 120px;
+    line-height: 30px;
+
+}
+
+.programs__learn__timeline__item:nth-child(4)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    left: -62px;
+    background-color: #7C6AFA;
+}
+
+.programs__learn__timeline__item:nth-child(6) {
+    text-align: left;
+    line-height: 30px;
+}
+
+.programs__learn__timeline__item:nth-child(6)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    left: -62px;
+    background-color: #7C6AFA;
+}

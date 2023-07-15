@@ -27,7 +27,8 @@
     border:none;
     border-radius: 30px;
     padding: 10px 30px 10px 30px;
-    background: linear-gradient(#DF5950, #451046);
+    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
+
 }
 
 
@@ -78,7 +79,7 @@
 .line::before {
     content: '';
     position: absolute;
-    background: linear-gradient(#DF5950, #451046);
+    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
     border-radius: 5px;
     max-width: 440px;
     width: 100%;
