@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<style>
+    @media(max-width:640px) {
+        .table__items__container {
+            display: none;
+        }
+
+        .table__filters {
+            border-bottom-width: 1px;
+        }
+
+       
+    }
+    @media(max-width:320px) {
+        .table__container >  header {
+            display: block;
+        }
+        
+       
+    }
+</style>
+
+<body>
+    <div class="w-full bg-[#B5B2B2] flex  justify-center  items-center">
+        <div class="table__container mt-[60px] mb-[60px] ">
+            <header class=" flex justify-between items-center py-[16px]">
+                <h1 class="text-[28px]"><b>Все счета</b></h1>
+                <button class="py-[8px] px-[16px] bg-[#7840B0] rounded">Выставить счет</button>
+            </header>
+            <div class="table p-5 bg-[#FFFFFF]  max-w-[1088px]  rounded">
+                <div
+                    class="table__categories sm:flex justify-start items-center text-[#25262D] text-[14px] border-b-2 px-[20px] py-[16px]">
+                    <div class="table__category mb-[5px] sm:mr-[32px] cursor-pointer">Выставленные</div>
+                    <div class="table__category mb-[5px] sm:mr-[32px] cursor-pointer">К оплате</div>
+                    <div class="table__category mb-[5px] sm:mr-[32px] cursor-pointer border-b-2 border-[#7840B0]">
+                        История</div>
+                </div>
+                <div class="table__filters   sm:flex  justify-between  items-center  p-[16px]  ">
+                    <div class="table__filter sm:max-w-[260px] w-full mr-[8px]">
+                        <select name="operations" id="" class=" w-full p-[12px] cursor-pointer border rounded">
+                            <option value="1">Все торговые точки</option>
+                        </select>
+                    </div>
+                    <div class="table__filter sm:max-w-[436px] w-full mr-[8px]">
+                        <input type="number" placeholder="Поиск по номеру счета"
+                            class=" w-full p-[12px] cursor-pointer border rounded">
+                    </div>
+                    <div class="table__filter sm:max-w-[168px] w-full mr-[8px] ">
+                        <select name="filters" id="" class="w-full p-[12px] cursor-pointer border rounded">
+                            <option value="0">Фильтры</option>
+                        </select>
+                    </div>
+                    <div class="table__filter sm:max-w-[168px] w-full mr-[8px]">
+                        <select name="actions" id="" class="w-full p-[12px] cursor-pointer border rounded">
+                            <option value="0">Действия</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table__items__container">
+                    <div class="table__fields grid grid-cols-7  items-center border-b-2 py-[13px] px-[15px]">
+                        <div class="field__check ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="field__number__check ">
+                            <span>Номер счета</span>
+                        </div>
+                        <div class="field__time flex items-center ">
+                            <span>Время и дата</span>
+                            <span class="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </div>
+                        <div class="field__operations ">
+                            <span>Торговая точка</span>/ <span>Операция</span>
+                        </div>
+                        <div class="field__summ flex items-center">
+                            <span>Сумма</span>
+                            <span class="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </div>
+                        <div class="field__recived ">
+                            <span>Получено</span>
+                        </div>
+                        <div class="field__status flex items-center">
+                            <span>Cтатус</span>
+                            <span class="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </div>
+                    </div>
+                    <div class="table__item grid grid-cols-7 items-center py-[13px] px-[15px]">
+                        <div class="table__item__checkbox ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="table__item__number__check">
+                            <span>№41232</span>
+                        </div>
+                        <div class="table__item__time_and_date">
+                            <span>11:20 05.01.2019</span>
+                        </div>
+                        <div class="table__item__operation">
+                            <span>Smart Лазурный</span>
+                        </div>
+                        <div class="table__item__summ">
+                            <span>1500 тг</span><br />
+                            <span class="text-gray-300">-150 тг</span>
+                        </div>
+                        <div class="table__item__recived">
+                            <span><b>1350 тг</b></span>
+                        </div>
+                        <div class="table__item__status text-[14px]">
+                            <span class="rounded-full bg-green-200 p-[4px]  w-full">Оплачено</span>
+                        </div>
+                    </div>
+                    <div class="table__item grid grid-cols-7 items-center py-[13px] px-[15px]">
+                        <div class="table__item__checkbox ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="table__item__number__check">
+                            <span>№41232</span>
+                        </div>
+                        <div class="table__item__time_and_date">
+                            <span>11:20 05.01.2019</span>
+                        </div>
+                        <div class="table__item__operation">
+                            <span>Smart Лазурный</span>
+                        </div>
+                        <div class="table__item__summ">
+                            <span>1500 тг</span><br />
+                            <span class="text-gray-300">-150 тг</span>
+                        </div>
+                        <div class="table__item__recived">
+                            <span><b>1350 тг</b></span>
+                        </div>
+                        <div class="table__item__status text-[14px]">
+                            <span class="rounded-full bg-red-200 p-[4px]  w-full">Отклонено</span>
+                        </div>
+                    </div>
+                    <div class="table__item grid grid-cols-7 items-center py-[13px] px-[15px]">
+                        <div class="table__item__checkbox ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="table__item__number__check">
+                            <span>№41232</span>
+                        </div>
+                        <div class="table__item__time_and_date">
+                            <span>11:20 05.01.2019</span>
+                        </div>
+                        <div class="table__item__operation">
+                            <span>Smart Лазурный</span>
+                        </div>
+                        <div class="table__item__summ">
+                            <span>1500 тг</span><br />
+                            <span class="text-gray-300">-150 тг</span>
+                        </div>
+                        <div class="table__item__recived">
+                            <span><b>1350 тг</b></span>
+                        </div>
+                        <div class="table__item__status text-[14px]">
+                            <span class="rounded-full bg-indigo-200 p-[4px]  w-full">Вывод средств</span>
+                        </div>
+                    </div>
+                    <div class="table__item grid grid-cols-7 items-center py-[13px] px-[15px]">
+                        <div class="table__item__checkbox ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="table__item__number__check">
+                            <span>№41232</span>
+                        </div>
+                        <div class="table__item__time_and_date">
+                            <span>11:20 05.01.2019</span>
+                        </div>
+                        <div class="table__item__operation">
+                            <span>Smart Лазурный</span>
+                        </div>
+                        <div class="table__item__summ">
+                            <span>1500 тг</span><br />
+                            <span class="text-gray-300">-150 тг</span>
+                        </div>
+                        <div class="table__item__recived">
+                            <span><b>1350 тг</b></span>
+                        </div>
+                        <div class="table__item__status text-[14px]">
+                            <span class="rounded-full bg-green-200 p-[4px]  w-full">Оплачено</span>
+                        </div>
+                    </div>
+                    <div class="table__item grid grid-cols-7 items-center py-[13px] px-[15px]">
+                        <div class="table__item__checkbox ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="table__item__number__check">
+                            <span>№41232</span>
+                        </div>
+                        <div class="table__item__time_and_date">
+                            <span>11:20 05.01.2019</span>
+                        </div>
+                        <div class="table__item__operation">
+                            <span>Smart Лазурный</span>
+                        </div>
+                        <div class="table__item__summ">
+                            <span>1500 тг</span><br />
+                            <span class="text-gray-300">-150 тг</span>
+                        </div>
+                        <div class="table__item__recived">
+                            <span><b>1350 тг</b></span>
+                        </div>
+                        <div class="table__item__status text-[14px]">
+                            <span class="rounded-full bg-green-200 p-[4px]  w-full">Оплачено</span>
+                        </div>
+                    </div>
+                    <div class="table__item grid grid-cols-7 items-center py-[13px] px-[15px]">
+                        <div class="table__item__checkbox ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="table__item__number__check">
+                            <span>№41232</span>
+                        </div>
+                        <div class="table__item__time_and_date">
+                            <span>11:20 05.01.2019</span>
+                        </div>
+                        <div class="table__item__operation">
+                            <span>Smart Лазурный</span>
+                        </div>
+                        <div class="table__item__summ">
+                            <span>1500 тг</span><br />
+                            <span class="text-gray-300">-150 тг</span>
+                        </div>
+                        <div class="table__item__recived">
+                            <span><b>1350 тг</b></span>
+                        </div>
+                        <div class="table__item__status text-[14px]">
+                            <span class="rounded-full bg-green-200 p-[4px]  w-full">Оплачено</span>
+                        </div>
+                    </div>
+                    <div class="table__item grid grid-cols-7 items-center py-[13px] px-[15px]">
+                        <div class="table__item__checkbox ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="table__item__number__check">
+                            <span>№41232</span>
+                        </div>
+                        <div class="table__item__time_and_date">
+                            <span>11:20 05.01.2019</span>
+                        </div>
+                        <div class="table__item__operation">
+                            <span>Smart Лазурный</span>
+                        </div>
+                        <div class="table__item__summ">
+                            <span>1500 тг</span><br />
+                            <span class="text-gray-300">-150 тг</span>
+                        </div>
+                        <div class="table__item__recived">
+                            <span><b>1350 тг</b></span>
+                        </div>
+                        <div class="table__item__status text-[14px]">
+                            <span class="rounded-full bg-green-200 p-[4px]  w-full">Оплачено</span>
+                        </div>
+                    </div>
+                    <div class="table__item grid grid-cols-7 items-center py-[13px] px-[15px]">
+                        <div class="table__item__checkbox ">
+                            <input type="checkbox" name="target__check" id="target__check" class="cursor-pointer">
+                        </div>
+                        <div class="table__item__number__check">
+                            <span>№41232</span>
+                        </div>
+                        <div class="table__item__time_and_date">
+                            <span>11:20 05.01.2019</span>
+                        </div>
+                        <div class="table__item__operation">
+                            <span>Smart Лазурный</span>
+                        </div>
+                        <div class="table__item__summ">
+                            <span>1500 тг</span><br />
+                            <span class="text-gray-300">-150 тг</span>
+                        </div>
+                        <div class="table__item__recived">
+                            <span><b>1350 тг</b></span>
+                        </div>
+                        <div class="table__item__status text-[14px]">
+                            <span class="rounded-full bg-green-200 p-[4px]  w-full">Оплачено</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="table__items__container__mobile sm:hidden   px-[15px]">
+                    
+                        <div class="table__item py-3 border-b ">
+                            <div class="table__item__numbercheck">
+                                <span><b>Номер счета:</b></span><br />
+                                <span>№32467</span>
+                            </div>
+                            <div class="table__item__timeanddate">
+                                <span><b>Время и дата:</b></span><br />
+                                <span>11:20 05.01.2019</span>
+                            </div>
+                            <div class="table__item__operation">
+                                <span><b>Торговая точка / Оперция</b></span><br />
+                                <span>Smart Лазурный</span>
+                            </div>
+                            <div class="table__item__summ">
+                                <span><b>Сумма</b></span><br />
+                                <span>1350 тг</span>
+                            </div>
+                            <div class="table__item__recived">
+                                <span><b>Получено</b></span><br />
+                                <span>1350 тг</span>
+                            </div>
+                            <div class="table__item__status">
+                                <span><b>Статус</b></span><br />
+                                <span class="p-[4px] text-[12px] bg-green-300 rounded-full">Оплачено</span>
+                            </div>
+                        </div>
+                        <div class="table__item py-3 border-b ">
+                            <div class="table__item__numbercheck">
+                                <span><b>Номер счета:</b></span><br />
+                                <span>№32467</span>
+                            </div>
+                            <div class="table__item__timeanddate">
+                                <span><b>Время и дата:</b></span><br />
+                                <span>11:20 05.01.2019</span>
+                            </div>
+                            <div class="table__item__operation">
+                                <span><b>Торговая точка / Оперция</b></span><br />
+                                <span>Smart Лазурный</span>
+                            </div>
+                            <div class="table__item__summ">
+                                <span><b>Сумма</b></span><br />
+                                <span>1350 тг</span>
+                            </div>
+                            <div class="table__item__recived">
+                                <span><b>Получено</b></span><br />
+                                <span>1350 тг</span>
+                            </div>
+                            <div class="table__item__status">
+                                <span><b>Статус</b></span><br />
+                                <span class="p-[4px] text-[12px] bg-green-300 rounded-full">Оплачено</span>
+                            </div>
+                        </div>
+                        <div class="table__item py-3 border-b ">
+                            <div class="table__item__numbercheck">
+                                <span><b>Номер счета:</b></span><br />
+                                <span>№32467</span>
+                            </div>
+                            <div class="table__item__timeanddate">
+                                <span><b>Время и дата:</b></span><br />
+                                <span>11:20 05.01.2019</span>
+                            </div>
+                            <div class="table__item__operation">
+                                <span><b>Торговая точка / Оперция</b></span><br />
+                                <span>Smart Лазурный</span>
+                            </div>
+                            <div class="table__item__summ">
+                                <span><b>Сумма</b></span><br />
+                                <span>1350 тг</span>
+                            </div>
+                            <div class="table__item__recived">
+                                <span><b>Получено</b></span><br />
+                                <span>1350 тг</span>
+                            </div>
+                            <div class="table__item__status">
+                                <span><b>Статус</b></span><br />
+                                <span class="p-[4px] text-[12px] bg-green-300 rounded-full">Оплачено</span>
+                            </div>
+                        </div>
+                        <div class="table__item py-3 border-b ">
+                            <div class="table__item__numbercheck">
+                                <span><b>Номер счета:</b></span><br />
+                                <span>№32467</span>
+                            </div>
+                            <div class="table__item__timeanddate">
+                                <span><b>Время и дата:</b></span><br />
+                                <span>11:20 05.01.2019</span>
+                            </div>
+                            <div class="table__item__operation">
+                                <span><b>Торговая точка / Оперция</b></span><br />
+                                <span>Smart Лазурный</span>
+                            </div>
+                            <div class="table__item__summ">
+                                <span><b>Сумма</b></span><br />
+                                <span>1350 тг</span>
+                            </div>
+                            <div class="table__item__recived">
+                                <span><b>Получено</b></span><br />
+                                <span>1350 тг</span>
+                            </div>
+                            <div class="table__item__status">
+                                <span><b>Статус</b></span><br />
+                                <span class="p-[4px] text-[12px] bg-green-300 rounded-full">Оплачено</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
