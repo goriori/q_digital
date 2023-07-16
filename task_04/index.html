@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Books</title>
+</head>
+
+<body class="bg-[#F1EEEE]">
+    <div class="wrapper flex justify-evenly items-center">
+        <div class="main__block">
+            <div class="favorite__books w-[782px]    ">
+                <h2 class="text-[48px] mb-[20px]  "><b>Любимые книги</b></h2>
+                <div class="favorite__books__list border bg-[#fff] p-5  w-full  ">
+                    <div class="favorite__items overflow-auto max-h-[200px] " id="book__favorite">
+                        <!-- <div
+                            class="book__item flex justify-between items-center mb-[20px] hover:bg-[#E8DEDE] transition">
+                            <h3 class="font-bold"><span>-</span>Book number 1</h3>
+                            <div class="book_actions flex justify-center items-center">
+                                <button
+                                    class="mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold">Ред.</button>
+                                <button
+                                    class="mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold">Прочитал</button>
+                                <button
+                                    class="mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold">Читать</button>
+                                <button
+                                    class="material-symbols-outlined mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold">
+                                    close
+                                </button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <button
+                        class="w-full flex  justify-center items-center border border-dashed py-[15px] uppercase font-bold">drop
+                        down
+                        area</button>
+                </div>
+            </div>
+            <div class="list__books">
+                <h2 class="text-[48px] mb-[20px]  "><b>Список книг</b></h2>
+                <div class="list__books__list border bg-[#fff] p-5  w-full  ">
+                    <div class="list_books__items overflow-auto max-h-[200px]" id="book__lists">
+                        <!-- <div
+                            class="list__books__item flex justify-between items-center mb-[20px] hover:bg-[#E8DEDE] transition">
+                            <h3 class="font-bold"><span>-</span>Book number 1</h3>
+
+                            <div class="book_actions flex justify-center items-center">
+                                <button
+                                    class="mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold">Ред.</button>
+                                <button
+                                    class="mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold">Прочитал</button>
+                                <button
+                                    class="mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold">Читать</button>
+                                <button
+                                    class="material-symbols-outlined mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold">
+                                    close
+                                </button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <button
+                        class="w-full flex  justify-center items-center border border-dashed py-[15px] uppercase font-bold">drop
+                        down
+                        area</button>
+                </div>
+            </div>
+            <div class="add_book">
+                <h2 class="text-[48px] mb-[20px]  "><b>Добавить книгу</b></h2>
+                <div class="add__form bg-[#fff] p-5 " id="add__form">
+
+                    <div class="form__choice mb-[20px]">
+                        <fieldset>
+
+                            <input type="radio" class="text-[20px] mb-[20px] mr-[17px] text-[20px]" value="0"
+                                id="check_load" name="check" />
+                            <label for="check_load">Загрузить книгу</label><br />
+
+
+                            <input type="radio" class="text-[20px] mb-[20px] mr-[17px] text-[20px]" value="1"
+                                id="write_some"  name="check" />
+                            <label for="write_some">Написать самому</label><br />
+
+                        </fieldset>
+
+                    </div>
+                    <div class="form__information" id="form__information">
+                       
+                    </div>
+                    <input
+                        class="w-full flex  justify-center items-center border border-dashed py-[15px] uppercase font-bold cursor-pointer"
+                        id="add_book" type="submit" value="Create"></input>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="screen__book bg-[#F0F0F0]">
+            Содержимое книги
+        </div>
+    </div>
+    <script src="/task_04/books.js"></script>
+</body>
+
+</html>
