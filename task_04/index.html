@@ -12,7 +12,7 @@
 </head>
 
 <body class="bg-[#F1EEEE]">
-    <div class="wrapper flex justify-evenly items-center">
+    <div class="wrapper flex justify-evenly py-[60px] px-[170px] ">
         <div class="main__block">
             <div class="favorite__books w-[782px]    ">
                 <h2 class="text-[48px] mb-[20px]  "><b>Любимые книги</b></h2>
@@ -82,14 +82,14 @@
 
 
                             <input type="radio" class="text-[20px] mb-[20px] mr-[17px] text-[20px]" value="1"
-                                id="write_some"  name="check" />
+                                id="write_some" name="check" />
                             <label for="write_some">Написать самому</label><br />
 
                         </fieldset>
 
                     </div>
                     <div class="form__information" id="form__information">
-                       
+
                     </div>
                     <input
                         class="w-full flex  justify-center items-center border border-dashed py-[15px] uppercase font-bold cursor-pointer"
@@ -99,8 +99,48 @@
                 </div>
             </div>
         </div>
-        <div class="screen__book bg-[#F0F0F0]">
-            Содержимое книги
+        <div class="screen__book bg-[#E5E5E5] m-2 max-w-[1000px] w-full">
+            <h2 class="text-[48px] font-bold ml-[80px]" id="screen__book__name">Book number1</h2>
+            <div class="screen__book__description mx-[30px]" , id="screen__book__description">
+                <p class="mb-[30px]">
+                    Разнообразный и богатый опыт укрепление и развитие структуры обеспечивает широкому кругу
+                    (специалистов) участие в формировании соответствующий условий активизации. Повседневная практика
+                    показывает, что сложившаяся структура организации влечет за собой процесс внедрения и модернизации
+                    дальнейших направлений развития. Повседневная практика показывает, что реализация намеченных
+                    плановых заданий позволяет оценить значение существенных финансовых и административных условий.
+                    Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции
+                    влечет за собой процесс внедрения и модернизации модели развития. С другой стороны постоянное
+                    информационно-пропагандистское обеспечение нашей деятельности в значительной степени обуславливает
+                    создание дальнейших направлений развития.
+
+                </p>
+                <p>
+
+                    Задача организации, в особенности же рамки и место обучения кадров обеспечивает широкому кругу
+                    (специалистов) участие в формировании новых предложений. Разнообразный и богатый опыт новая модель
+                    организационной деятельности играет важную роль в формировании направлений прогрессивного развития.
+                    Товарищи! постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает
+                    широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении
+                    поставленных задач. Значимость этих проблем настолько очевидна, что консультация с широким активом
+                    обеспечивает широкому кругу (специалистов) участие в формировании систем массового участия.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div
+        class="modal__window__container max-w-[500px] max-h-[400px] fixed inset-10 top-[200px]  border border-black p-5  bg-white hidden " id="modal__window__container">
+        <div class="modal__window__edit">
+            <div class="modal__window__edit__title flex justify-between items-center">
+                <h2 class="text-[20px] font-bold mb-5">Book number 2</h2>
+                <span class="material-symbols-outlined cursor-pointer" id="close__edit__form">close</span>
+            </div>
+
+            <div class="edit__form ">
+                <input type="text"  class="border-2 border-black p-2 w-full mb-5" id="edit_name_book"><br />
+                <textarea name="" id="edit_description_book" cols="30" rows="5" class="border-black border-2 w-full mb-5"></textarea>
+                <button
+                    class="w-full flex  justify-center items-center border border-dashed py-[15px] uppercase font-bold cursor-pointer" id="edit_form_save">Сохранить</button>
+            </div>
         </div>
     </div>
     <script src="/task_04/books.js"></script>
