@@ -382,7 +382,7 @@ const sendFile = async (file) => {
             method: 'POST',
             url: 'https://apiinterns.osora.ru/ ',
             auth: {
-                login: 'Dev',
+                username: 'Dev',
                 password: 'qdprivate'
             }
         })
