@@ -49,11 +49,12 @@ const newTU = new TU_Airplane('ТУ', 'ТУ-154', 300)
 
 
 class Airport {
-    constructor(name, coordinate = [12.2324, 65.2321], limit_parking = 5) {
-        this.name = name
+    constructor(name, coordinate = [12.2324, 65.2321], limit_parking = 5, airplanes) {
+        this.name = name.toLocaleUpperCase()
         this.coordinate = coordinate
         this.limit_parking = limit_parking
         this.parking = []
+        this.servise_airplanes = airplanes
     }
     takeThePlane(plane) {
         const valid = this.validParking()
@@ -78,7 +79,7 @@ class Airport {
     refuelPlane(plane) {
         plane.refuel(20)
     }
-    getPlanesInPark(){
+    getPlanesInPark() {
         return this.parking
     }
     validParking() {
@@ -88,6 +89,17 @@ class Airport {
     }
 }
 
-const IzhevskAirport = new Airport('IzhAvie', [32.21312, 65.3322], 10)
+
+const createAirplanesForAirport = (type, count) => {
+    const airplanes_for_aiprot = []
+    for (let i = 0; i < count; i++) {
+        if (type === 'mig') airplanes_for_aiprot.push(new MIG_Airplane('МИГ', 'ПВА-24', 1000))
+        if (type === 'tu') airplanes_for_aiprot.push(new TU_Airplane('ТУ', 'ДДА-5', 1500))
+    }
+    return airplanes_for_aiprot
+}
+
+
+const airplanesIzh = createAirplanesForAirport('mig', 10)
+const IzhevskAirport = new Airport('IzhAvie', [32.21312, 65.3322], 10, airplanesIzh)
 IzhevskAirport.takeThePlane(newMig)
-console.log(IzhevskAirport.getPlanesInPark())

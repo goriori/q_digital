@@ -235,6 +235,7 @@ class UI {
     displayCartBasketProduct() {
         cartItems = Storage.getCartItems()
         const countCarts = cartItems.length
+        this.checkEmptyCartBasketProduct()
         sliderBasket.innerHTML = cartItems.map((cartItem, index) => {
 
             return `<article class="product slide-basket" data-brand="${cartItem.brand}" number="${index + 1}">
@@ -248,11 +249,12 @@ class UI {
         
         // const slides = this.rebuildSlides()
         // slides.forEach(slide => sliderBasket.append(slide))
-        const generateBtns = this.setButtonSlider()
+        const generateBtns = this.setButtonSliderProduct()
         sliderBasket.appendChild(generateBtns)
     }
 
-    setButtonSlider() {
+    setButtonSliderProduct() {
+        
         const sliderBtns = document.createElement('div')
         sliderBtns.classList.add('slider-basket-btns')
         sliderBtns.innerHTML =
@@ -266,47 +268,57 @@ class UI {
         `
         return sliderBtns
     }
-    rebuildSlides() {
+    checkEmptyCartBasketProduct(){
         cartItems = Storage.getCartItems()
         const countCarts = cartItems.length
-        const slideItems = []
-        if (countCarts % 3 == 0) {
-            const slideElement = document.createElement('div')
-            slideElement.setAttribute('class', 'slide-basket')
-            for (let i = 0; i < countCarts; i++) {
-                const article = document.createElement('article')
-                article.classList.add('product slide-basket')
-                article.setAttribute('data-brand', cartItems[i].brand)
-                article.setAttribute('number', i + 1)
-
-                const productImage = document.createElement('div')
-                productImage.classList.add('product-image-wrapper')
-                const img = document.createElement('img')
-                img.src = cartItems[i].images[0]
-                productImage.appendChild(img)
-
-                const title = document.createElement('h3')
-                title.textContent = cartItems[i].title
-                const price = document.createElement('h5')
-                price.textContent = cartItems[i].price
-
-                article.appendChild(productImage)
-                article.appendChild(title)
-                article.appendChild(price)
-
-                slideElement.appendChild(article)
-                if (i % 3 == 0) {
-                    console.log('OP')
-                    slideItems.push(slideElement)
-                }
-            }
-
+        if (!countCarts) {
+            sliderBasket.innerHTML = '<div class="empty-cart">No items...</div>';
+            return;
         }
-        console.log('slides: ', slideItems)
-
-        return slideItems
+        const div = document.querySelector('.empty-cart');
+        if (div) div.remove();
     }
-    setSliderBasket() {
+    // rebuildSlidesProduct() {
+    //     cartItems = Storage.getCartItems()
+    //     const countCarts = cartItems.length
+    //     const slideItems = []
+    //     if (countCarts % 3 == 0) {
+    //         const slideElement = document.createElement('div')
+    //         slideElement.setAttribute('class', 'slide-basket')
+    //         for (let i = 0; i < countCarts; i++) {
+    //             const article = document.createElement('article')
+    //             article.classList.add('product slide-basket')
+    //             article.setAttribute('data-brand', cartItems[i].brand)
+    //             article.setAttribute('number', i + 1)
+
+    //             const productImage = document.createElement('div')
+    //             productImage.classList.add('product-image-wrapper')
+    //             const img = document.createElement('img')
+    //             img.src = cartItems[i].images[0]
+    //             productImage.appendChild(img)
+
+    //             const title = document.createElement('h3')
+    //             title.textContent = cartItems[i].title
+    //             const price = document.createElement('h5')
+    //             price.textContent = cartItems[i].price
+
+    //             article.appendChild(productImage)
+    //             article.appendChild(title)
+    //             article.appendChild(price)
+
+    //             slideElement.appendChild(article)
+    //             if (i % 3 == 0) {
+    //                 console.log('OP')
+    //                 slideItems.push(slideElement)
+    //             }
+    //         }
+
+    //     }
+    //     console.log('slides: ', slideItems)
+
+    //     return slideItems
+    // }
+    setSliderBasketProduct() {
         this.displayCartBasketProduct()
         const leftSliderBtn = document.querySelector('.left-slider-basket-btn');
         const rightSliderBtn = document.querySelector('.right-slider-basket-btn');
@@ -432,8 +444,8 @@ class UI {
         sctollLinks.forEach(link => link.addEventListener('click', this.setScrollingLinks.bind(this)));
         // Launch product info
         this.setProductInfo();
-        // Launch slider
-        this.setSliderBasket()
+        // Launch sliders
+        this.setSliderBasketProduct()
         this.setSlider();
 
         // Set year

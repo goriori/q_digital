@@ -378,17 +378,21 @@ write_some.onchange = (e) => mdlwForm(e)
 
 const sendFile = async (file) => {
     try {
+        const username = 'Dev'
+        const password = 'qdprivate'
         const { data } = await axios({
-            method: 'POST',
-            url: 'https://apiinterns.osora.ru/ ',
+            method: "POST",
+            url: "https://apiinterns.osora.ru/",
+            data: {
+                file,
+                login: 'sss'
+            },
             auth: {
-                username: 'Dev',
-                password: 'qdprivate'
+                username,
+                password
             }
         })
         console.log(data)
-        return data
-
     } catch (error) {
         console.log(error)
     }
@@ -406,11 +410,18 @@ const mdlwForm = (v) => {
         add_book_button.value = 'loadFile'
 
         const loadFile = document.createElement('input')
+        loadFile.setAttribute('id', 'loadFile')
         loadFile.setAttribute('type', 'file')
         form__information.appendChild(loadFile)
 
+        const inputFile = document.getElementById('loadFile')
 
-        add_book_button.onclick = async (e) => await sendFile()
+
+        add_book_button.onclick = async (e) => {
+            console.log('file: ', inputFile.value)
+            console.log('event data: ', e)
+            await sendFile(inputFile.value)
+        }
 
     }
     else {
