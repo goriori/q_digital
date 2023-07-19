@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { requestHandler } from '../../utils/request'
 import { useNavigate } from 'react-router-dom'
+import AuthorizationError from '../messages/errors/authorization'
+import AuthorizationSuccess from '../messages/success/authorization'
 const SignUp = ({ setAuth }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [password_confirmation, setPassword_Confirmation] = useState('')
+    const [stateRegistration, setStateRegistration] = useState(0)
     const nav = useNavigate()
 
     const validPassword = () => {
@@ -13,20 +16,40 @@ const SignUp = ({ setAuth }) => {
         return validation
     }
     const registration = async () => {
-        if (!validPassword()) {
-            return console.log('valid password false')
+        try {
+            if (!validPassword()) {
+                return setStateRegistration(500)
+            }
+            const data = { name, email, password, password_confirmation }
+            const response = await requestHandler('https://internsapi.public.osora.ru/api/auth/signup', 'POST', data)
+            console.log(response)
+            setName('')
+            setEmail('')
+            setPassword('')
+            setPassword_Confirmation('')
+            setStateRegistration(200)
+            setTimeout(() => { setAuth(true) }, 2000)
+        } catch (error) {
+            console.log(error)
+            setName('')
+            setEmail('')
+            setPassword('')
+            setPassword_Confirmation('')
+            setStateRegistration(500)
         }
-        const data = { name, email, password, password_confirmation }
-        const response = await requestHandler('https://internsapi.public.osora.ru/api/auth/signup', 'POST', data)
-        console.log(response)
-        setName('')
-        setEmail('')
-        setPassword('')
-        setPassword_Confirmation('')
-        setAuth(true)
+
     }
     return (
         <div className='signup p-10  border rounded   text-center '>
+            <div className="messagess">
+                {
+                    stateRegistration >= 500 && stateRegistration <= 600 ? <AuthorizationError message='Произошла ошибка, попробуйте снова' /> : ''
+                }
+                {
+                    stateRegistration >= 200 && stateRegistration <= 300 ? <AuthorizationSuccess message='Вы успешно создали аккаунт' /> : ''
+                }
+
+            </div>
             <h1 className='font-bold'>Регистрация</h1>
             <div className="signup__form mt-4 mb-10">
                 <input type="text" placeholder='Name' onChange={(e) => setName(e.target.value)} className='p-2 m-2 border border-emerald-200 rounded text-center' /><br />

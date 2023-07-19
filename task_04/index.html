@@ -7,6 +7,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Books</title>
 </head>
@@ -127,8 +128,8 @@
             </div>
         </div>
     </div>
-    <div
-        class="modal__window__container max-w-[500px] max-h-[400px] fixed inset-10 top-[200px]  border border-black p-5  bg-white hidden " id="modal__window__container">
+    <div class="modal__window__container max-w-[500px] max-h-[400px] fixed inset-10 top-[200px]  border border-black p-5  bg-white hidden "
+        id="modal__window__container">
         <div class="modal__window__edit">
             <div class="modal__window__edit__title flex justify-between items-center">
                 <h2 class="text-[20px] font-bold mb-5">Edit Book</h2>
@@ -136,14 +137,41 @@
             </div>
 
             <div class="edit__form ">
-                <input type="text"  class="border-2 border-black p-2 w-full mb-5" id="edit_name_book"><br />
-                <textarea name="" id="edit_description_book" cols="30" rows="5" class="border-black border-2 w-full mb-5"></textarea>
+                <input type="text" class="border-2 border-black p-2 w-full mb-5" id="edit_name_book"><br />
+                <textarea name="" id="edit_description_book" cols="30" rows="5"
+                    class="border-black border-2 w-full mb-5"></textarea>
                 <button
-                    class="w-full flex  justify-center items-center border border-dashed py-[15px] uppercase font-bold cursor-pointer" id="edit_form_save">Сохранить</button>
+                    class="w-full flex  justify-center items-center border border-dashed py-[15px] uppercase font-bold cursor-pointer"
+                    id="edit_form_save">Сохранить</button>
             </div>
         </div>
     </div>
     <script src="/task_04/books.js"></script>
+    <script>
+        const start = () => {
+            try {
+                const username = 'Dev'
+                const password = 'qdprivate'
+                const headers = new Headers()
+                headers.set('Authorization', 'Basic ' + btoa(username + ':' + password))
+                const response = fetch('https://apiinterns.osora.ru/', {
+                    method: 'POST',
+                    headers: headers,
+                    body: {
+                        login: 'asss',
+                        file: 'asddsa'
+                    }
+
+                })
+                return response
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+        start().then(data => console.log(data)).catch(err=> console.log(err))
+
+    </script>
 </body>
 
 </html>

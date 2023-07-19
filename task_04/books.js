@@ -380,9 +380,24 @@ const sendFile = async (file) => {
     try {
         const username = 'Dev'
         const password = 'qdprivate'
+        // const headers = new Headers()
+        // headers.set('Authorization', 'Basic ' + btoa(username + ':' + password))
+        // const response = await fetch('https://apiinterns.osora.ru/', {
+        //     method: 'POST',
+        //     headers: headers,
+        //     body: {
+        //         login: 'asss',
+        //         file: file
+        //     }
+
+        // })
+
         const { data } = await axios({
             method: "POST",
             url: "https://apiinterns.osora.ru/",
+            headers: {
+                'Access-Control-Allow-Origin': "*"
+            },
             data: {
                 file,
                 login: 'sss'
