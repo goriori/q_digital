@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { requestHandler } from '../../utils/request'
-
+import { useNavigate } from 'react-router-dom'
 const SignUp = ({ setAuth }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [password_confirmation, setPassword_Confirmation] = useState('')
+    const nav = useNavigate()
 
     const validPassword = () => {
         const validation = password === password_confirmation ? true : false
         return validation
     }
-
     const registration = async () => {
         if (!validPassword()) {
             return console.log('valid password false')
@@ -22,7 +22,8 @@ const SignUp = ({ setAuth }) => {
         setName('')
         setEmail('')
         setPassword('')
-        setPasswordConfirm('')
+        setPassword_Confirmation('')
+        setAuth(true)
     }
     return (
         <div className='signup p-10  border rounded   text-center '>
