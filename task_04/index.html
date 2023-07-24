@@ -147,31 +147,7 @@
         </div>
     </div>
     <script src="/task_04/books.js"></script>
-    <script>
-        const start = () => {
-            try {
-                const username = 'Dev'
-                const password = 'qdprivate'
-                const headers = new Headers()
-                headers.set('Authorization', 'Basic ' + btoa(username + ':' + password))
-                const response = fetch('https://apiinterns.osora.ru/', {
-                    method: 'POST',
-                    headers: headers,
-                    body: {
-                        login: 'asss',
-                        file: 'asddsa'
-                    }
-
-                })
-                return response
-            } catch (error) {
-                console.log(error)
-            }
-
-        }
-        start().then(data => console.log(data)).catch(err=> console.log(err))
-
-    </script>
+    
 </body>
 
 </html>

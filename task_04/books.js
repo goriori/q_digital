@@ -385,23 +385,23 @@ const sendFile = async (file) => {
         // const response = await fetch('https://apiinterns.osora.ru/', {
         //     method: 'POST',
         //     headers: headers,
+        //     mode:'no-cors',
         //     body: {
         //         login: 'asss',
         //         file: file
         //     }
 
         // })
-
+        const formData = new FormData()
+        formData.append('file', file)
         const { data } = await axios({
             method: "POST",
             url: "https://apiinterns.osora.ru/",
             headers: {
-                'Access-Control-Allow-Origin': "*"
+                'Access-Control-Allow-Origin': '*',
             },
-            data: {
-                file,
-                login: 'sss'
-            },
+
+            formData,
             auth: {
                 username,
                 password
@@ -435,7 +435,7 @@ const mdlwForm = (v) => {
         add_book_button.onclick = async (e) => {
             console.log('file: ', inputFile.value)
             console.log('event data: ', e)
-            await sendFile(inputFile.value)
+            await sendFile(inputFile.files[0])
         }
 
     }
