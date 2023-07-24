@@ -24,7 +24,7 @@ button {
 .other-screens {
     position: relative;
     z-index: -5;
-    background-image: url('/task_02/assets/images/bgc.png');
+    background-image: url('./assets/images/bgc.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
