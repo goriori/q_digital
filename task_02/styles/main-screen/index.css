@@ -1,6 +1,6 @@
-@import url('/task_02/styles/main-screen/header.css');
-@import url('/task_02/styles/main-screen/content.css');
-@import url('/task_02/styles/main-screen/information.css');
+@import url('./styles/main-screen/header.css');
+@import url('./styles/main-screen/content.css');
+@import url('./styles/main-screen/information.css');
 
 
 .main-screen {
