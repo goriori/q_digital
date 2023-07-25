@@ -98,21 +98,73 @@ const loadScreenOnRead = (book = {}) => {
 
 }
 
+const generateElement = (element = '', attributes = [{ name: 'class', value: 'awdawd awd adw dw', }],) => {
+    const createElement = document.createElement(element)
+    if (attributes.length == 0) return createElement
+    attributes.forEach(atribute => {
+        createElement.setAttribute(atribute.name, atribute.value)
+    })
+    return createElement
+}
 
-// const setBgColorItem = (book) => {
-//     const list__books__item = document.createElement('div')
-//     if (book.read_finish) list__books__item.setAttribute('class', 'list__books__item flex justify-between items-center mb-[20px]  bg-[#E8DEDE]')
-//     else list__books__item.setAttribute('class', 'list__books__item flex justify-between items-center mb-[20px] ')
-//     // book.read_finish
-//     //     ?
-//     //     list__books__item.setAttribute('class', 'list__books__item flex justify-between items-center mb-[20px]  bg-[#E8DEDE]')
-//     //     :
-//     //     list__books__item.setAttribute('class', 'list__books__item flex justify-between items-center mb-[20px] ')
-// }
-
-const renderList = () => {
-    const listContainer = document.getElementById('book__lists')
-    database.list_all.forEach(book => {
+const actionDelete = (button, data, action, list_type = 'list_all') => {
+    button.setAttribute('class', 'material-symbols-outlined mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
+    button.textContent = 'close'
+    button.setAttribute('value', data.id)
+    button.onclick = (e) => {
+        const list_id = Number(button.getAttribute('value'))
+        database[list_type] = database[list_type].filter(list => list.id != list_id)
+        onReLoad()
+    }
+}
+const actionRead = (button, data, action, list_type = 'list_all') => {
+    button.setAttribute('class', ' mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
+    button.textContent = action
+    button.setAttribute('value', data.id)
+    button.onclick = (e) => {
+        const list_id = Number(button.getAttribute('value'))
+        const target__book = database[list_type].find(book => book.id === list_id)
+        loadScreenOnRead(target__book)
+        onReLoad()
+    }
+}
+const actionReaded = (button, data, action, list_type = 'list_all') => {
+    button.setAttribute('class', ' mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
+    button.textContent = action
+    button.setAttribute('value', data.id)
+    button.onclick = (e) => {
+        const list_id = Number(button.getAttribute('value'))
+        const index_book = database[list_type].findIndex(book => book.id === list_id)
+        database[list_type][index_book].read_finish = !database[list_type][index_book].read_finish
+        onReLoad()
+    }
+}
+const actionEdit = (button, data, action, list_type = 'list_all') => {
+    button.setAttribute('class', 'mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
+    button.textContent = action
+    button.setAttribute('value', data.id)
+    button.onclick = () => {
+        const modal__window__container = document.getElementById('modal__window__container')
+        modal__window__container.setAttribute('class', 'modal__window__container max-w-[500px] max-h-[400px] fixed inset-10 top-[200px]  border border-black p-5  bg-white  ')
+        const edit_name_book = document.getElementById('edit_name_book')
+        const edit_description_book = document.getElementById('edit_description_book')
+        const list_id = Number(button.getAttribute('value'))
+        const target__book = database[list_type].find((book) => book.id === list_id)
+        const target__index = database[list_type].findIndex((book) => book.id === list_id)
+        edit_name_book.value = target__book.name
+        edit_description_book.textContent = target__book.description
+        const edit_form_save_button = document.getElementById('edit_form_save')
+        edit_form_save_button.onclick = (e) => {
+            database[list_type][target__index].name = edit_name_book.value
+            database[list_type][target__index].description = edit_description_book.value
+            closeEditForm()
+            onReLoad()
+        }
+    }
+}
+const render = (targetElement, list_type) => {
+    const listContainer = document.getElementById(targetElement)
+    database[list_type].forEach(book => {
         //  Поулчаем корневой элемент, куда будем вставлять последующие айтемы, итерируемые с бд
         const list__books__item = document.createElement('div')
         book.read_finish
@@ -121,77 +173,23 @@ const renderList = () => {
             :
             list__books__item.setAttribute('class', 'list__books__item flex justify-between items-center mb-[20px] ')
         // Выстраиваю DOM Элементы Item , после буду добавлять в родителя.
-        const el_h3 = document.createElement('h3')
-        const el_span = document.createElement('span')
-        el_h3.setAttribute('class', 'font-bold')
-        el_span.textContent = '-'
+        const el_h3 = generateElement('h3', [{ name: 'class', value: 'font-bold' }])
+        const el_span = generateElement('span', [])
         el_h3.appendChild(el_span)
         el_h3.textContent = book.name
-        const book_actions = document.createElement('div')
-        book_actions.setAttribute('class', 'book_actions flex justify-center items-center')
+        const book_actions = generateElement('div', [{ name: 'class', value: 'book_actions flex justify-center items-center' }])
         const buttons__actions = ['Ред.', 'Прочитал', 'Читать', 'Удалить']
         buttons__actions.forEach(action => {
             const button = document.createElement('button')
             if (action === 'Удалить') {
-                button.setAttribute('class', 'material-symbols-outlined mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-                button.textContent = 'close'
-                button.setAttribute('value', book.id)
-                button.onclick = (e) => {
-                    const list_id = Number(button.getAttribute('value'))
-                    database.list_all = database.list_all.filter(list => list.id != list_id)
-                    onReLoad()
-                }
+                actionDelete(button, book, action, list_type)
             } else if (action === 'Читать') {
-                button.setAttribute('class', ' mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-                button.textContent = action
-                button.setAttribute('value', book.id)
-                button.onclick = (e) => {
-                    const list_id = Number(button.getAttribute('value'))
-                    const target__book = database.list_all.find(book => book.id === list_id)
-                    loadScreenOnRead(target__book)
-                    onReLoad()
-                }
+                actionRead(button, book, action, list_type)
             } else if (action === 'Прочитал') {
-                button.setAttribute('class', ' mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-                button.textContent = action
-                button.setAttribute('value', book.id)
-                button.onclick = (e) => {
-                    const list_id = Number(button.getAttribute('value'))
-                    const index_book = database.list_all.findIndex(book => book.id === list_id)
-                    database.list_all[index_book].read_finish = !database.list_all[index_book].read_finish
-                    onReLoad()
-                }
+                actionReaded(button, book, action, list_type)
             }
             else if (action === 'Ред.') {
-                button.setAttribute('class', 'mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-                button.textContent = action
-                button.setAttribute('value', book.id)
-                button.onclick = () => {
-
-
-                    const modal__window__container = document.getElementById('modal__window__container')
-                    modal__window__container.setAttribute('class', 'modal__window__container max-w-[500px] max-h-[400px] fixed inset-10 top-[200px]  border border-black p-5  bg-white  ')
-                    const edit_name_book = document.getElementById('edit_name_book')
-                    const edit_description_book = document.getElementById('edit_description_book')
-
-                    const list_id = Number(button.getAttribute('value'))
-                    const target__book = database.list_all.find((book) => book.id === list_id)
-                    const target__index = database.list_all.findIndex((book) => book.id === list_id)
-                    edit_name_book.value = target__book.name
-                    edit_description_book.textContent = target__book.description
-                    const edit_form_save_button = document.getElementById('edit_form_save')
-
-
-                    edit_form_save_button.onclick = (e) => {
-                        database.list_all[target__index].name = edit_name_book.value
-                        database.list_all[target__index].description = edit_description_book.value
-                        closeEditForm()
-                        onReLoad()
-
-                    }
-
-
-                }
+                actionEdit(button, book, action, list_type)
             }
             book_actions.appendChild(button)
         })
@@ -202,112 +200,18 @@ const renderList = () => {
 
     })
 }
-const renderFavorite = () => {
-    const listContainer = document.getElementById('book__favorite')
-    database.favorite.forEach(book => {
-        //  Поулчаем корневой элемент, куда будем вставлять последующие айтемы, итерируемые с бд
-        const list__books__item = document.createElement('div')
-        book.read_finish
-            ?
-            list__books__item.setAttribute('class', 'list__books__item flex justify-between items-center mb-[20px]  bg-[#E8DEDE]')
-            :
-            list__books__item.setAttribute('class', 'list__books__item flex justify-between items-center mb-[20px] ')
-        // Выстраиваю DOM Элементы Item , после буду добавлять в родителя.
-        const el_h3 = document.createElement('h3')
-        const el_span = document.createElement('span')
-        el_h3.setAttribute('class', 'font-bold')
-        el_span.textContent = '-'
-        el_h3.appendChild(el_span)
-        el_h3.textContent = book.name
-        const book_actions = document.createElement('div')
-        book_actions.setAttribute('class', 'book_actions flex justify-center items-center')
-        const buttons__actions = ['Ред.', 'Прочитал', 'Читать', 'Удалить']
-        buttons__actions.forEach(action => {
-            const button = document.createElement('button')
-            if (action === 'Удалить') {
-                button.setAttribute('class', 'material-symbols-outlined mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-                button.textContent = 'close'
-                button.setAttribute('value', book.id)
-                button.onclick = (e) => {
-                    const list_id = Number(button.getAttribute('value'))
-                    database.favorite = database.favorite.filter(list => list.id != list_id)
-                    onReLoad()
-                }
-            } else if (action === 'Читать') {
-                button.setAttribute('class', ' mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-                button.textContent = action
-                button.setAttribute('value', book.id)
-                button.onclick = (e) => {
-                    const list_id = Number(button.getAttribute('value'))
-                    const target__book = database.favorite.find(book => book.id === list_id)
-                    loadScreenOnRead(target__book)
-                    onReLoad()
-                }
-            } else if (action === 'Прочитал') {
-                button.setAttribute('class', ' mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-                button.textContent = action
-                button.setAttribute('value', book.id)
-                button.onclick = (e) => {
-                    const list_id = Number(button.getAttribute('value'))
-                    const index_book = database.favorite.findIndex(book => book.id === list_id)
-                    database.favorite[index_book].read_finish = !database.favorite[index_book].read_finish
-                    onReLoad()
-                }
-            }
-            else if (action === 'Ред.') {
-                button.setAttribute('class', 'mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-                button.textContent = action
-                button.setAttribute('value', book.id)
-                button.onclick = () => {
 
-
-                    const modal__window__container = document.getElementById('modal__window__container')
-                    modal__window__container.setAttribute('class', 'modal__window__container max-w-[500px] max-h-[400px] fixed inset-10 top-[200px]  border border-black p-5  bg-white  ')
-                    const edit_name_book = document.getElementById('edit_name_book')
-                    const edit_description_book = document.getElementById('edit_description_book')
-
-                    const list_id = Number(button.getAttribute('value'))
-                    const target__book = database.favorite.find((book) => book.id === list_id)
-                    const target__index = database.favorite.findIndex((book) => book.id === list_id)
-                    edit_name_book.value = target__book.name
-                    edit_description_book.textContent = target__book.description
-                    const edit_form_save_button = document.getElementById('edit_form_save')
-
-
-                    edit_form_save_button.onclick = (e) => {
-                        database.favorite[target__index].name = edit_name_book.value
-                        database.favorite[target__index].description = edit_description_book.value
-                        closeEditForm()
-                        onReLoad()
-
-                    }
-
-
-                }
-            }
-            book_actions.appendChild(button)
-        })
-        // Добавление сформированного ДОМ компонента в родителя
-        list__books__item.appendChild(el_h3)
-        list__books__item.appendChild(book_actions)
-        listContainer.appendChild(list__books__item)
-
-    })
-}
-const clearList = () => {
-    const book__lists = document.getElementById('book__lists')
+const clearListType = (list_type) => {
+    const book__lists = document.getElementById(list_type)
     book__lists.innerText = ''
 }
-const clearFavorite = () => {
-    const book__favorite = document.getElementById('book__favorite')
-    book__favorite.innerText = ''
-}
+
 const onReLoad = () => {
-    clearList()
-    clearFavorite()
+    clearListType('book__lists')
+    clearListType('book__favorite')
     saveDatabase()
-    renderList()
-    renderFavorite()
+    render('book__lists', 'list_all')
+    render('book__favorite', 'favorite')
 }
 
 const clearForm = () => {
@@ -355,8 +259,8 @@ const validForm = (args = []) => {
     })
     return result
 }
-renderFavorite()
-renderList()
+render('book__lists', 'list_all')
+render('book__favorite', 'favorite')
 
 const form__setting = {
     check_one: document.getElementById('check_load'),

@@ -44,6 +44,7 @@ class Products {
         // Contentful data 
         const headers = new Headers()
         headers.set('Authorization', 'Basic ' + btoa(username + ':' + password))
+      
         const response = await fetch('https://apiinterns.osora.ru/data/data.json', { method: 'GET', headers: headers });
         const result = await response.json();
         // Get products from data
