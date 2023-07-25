@@ -223,22 +223,12 @@ const onRewriteForm = () => {
     const add_book_button = document.getElementById('add_book')
     const form__information = document.getElementById('form__information')
     form__information.innerText = ''
-    const name__book = document.createElement('input')
-    name__book.setAttribute('type', 'text')
-    name__book.setAttribute('placeholder', 'Заголовок')
-    name__book.setAttribute('class', 'border-2 border-black w-full mb-[10px] px-[17px] h-[50px]')
-    name__book.setAttribute('id', 'name_book')
 
+    const name__book = generateElement('input', [{ name: 'type', value: 'text' }, { name: 'placeholder', value: 'Заголовок' }, { name: 'class', value: 'border-2 border-black w-full mb-[10px] px-[17px] h-[50px]' }, { name: 'id', value: 'name_book' }])
     form__setting.name__input.target_v = name__book
 
-    const description__book = document.createElement('textarea')
-    description__book.setAttribute('placeholder', 'Описание')
-    description__book.setAttribute('class', 'border-2 border-black w-full px-[17px]')
-    description__book.setAttribute('id', 'description_book')
-    description__book.setAttribute('name', 'description')
-    description__book.setAttribute('cols', '30')
-    description__book.setAttribute('rows', '5')
-
+    
+    const description__book = generateElement('textarea', [{name:'placeholder',value:'Описание'}, {name:'class', value:'border-2 border-black w-full px-[17px]'}, {name:"id", value:"description_book"}, {name:'name',value:'description'}, {name:'cols', value:'30'}, {name:'rows', value:'5'}])
     form__setting.description_input.target_v = description__book
 
     form__information.appendChild(name__book)
@@ -328,11 +318,8 @@ const mdlwForm = (v) => {
         add_book_button.setAttribute('type', 'submit')
         add_book_button.value = 'loadFile'
 
-        const loadFile = document.createElement('input')
-        loadFile.setAttribute('id', 'loadFile')
-        loadFile.setAttribute('type', 'file')
+        const loadFile = generateElement('input', [{ name: 'id', value: 'loadFile' }, { name: 'type', value: 'file' }])
         form__information.appendChild(loadFile)
-
         const inputFile = document.getElementById('loadFile')
 
 
