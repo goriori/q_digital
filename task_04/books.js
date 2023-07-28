@@ -83,9 +83,6 @@ saveDatabase()
 // DataBase ===============================================================
 
 
-
-
-
 const loadScreenOnRead = (book = {}) => {
     const screen__book__description = document.getElementById('screen__book__description')
     screen__book__description.innerText = ''
@@ -107,61 +104,57 @@ const generateElement = (element = '', attributes = [{ name: 'class', value: 'aw
     return createElement
 }
 
-const actionDelete = (button, data, action, list_type = 'list_all') => {
-    button.setAttribute('class', 'material-symbols-outlined mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-    button.textContent = 'close'
-    button.setAttribute('value', data.id)
-    button.onclick = (e) => {
-        const list_id = Number(button.getAttribute('value'))
-        database[list_type] = database[list_type].filter(list => list.id != list_id)
+function onClick(list_type, e) {
+    let action = e.target.dataset.action
+    console.log(action)
+    if (action) {
+        this[action](e.target, list_type)
+    }
+}
+function eventDelete(button, list_type) {
+    const list_id = Number(button.getAttribute('value'))
+    database[list_type] = database[list_type].filter(list => list.id != list_id)
+    onReLoad()
+}
+function eventEdit(button, list_type) {
+    const modal__window__container = document.getElementById('modal__window__container')
+    modal__window__container.setAttribute('class', 'modal__window__container max-w-[500px] max-h-[400px] fixed inset-10 top-[200px]  border border-black p-5  bg-white  ')
+    const edit_name_book = document.getElementById('edit_name_book')
+    const edit_description_book = document.getElementById('edit_description_book')
+    const list_id = Number(button.getAttribute('value'))
+    const target__book = database[list_type].find((book) => book.id === list_id)
+    const target__index = database[list_type].findIndex((book) => book.id === list_id)
+    edit_name_book.value = target__book.name
+    edit_description_book.textContent = target__book.description
+    const edit_form_save_button = document.getElementById('edit_form_save')
+    edit_form_save_button.onclick = (e) => {
+        database[list_type][target__index].name = edit_name_book.value
+        database[list_type][target__index].description = edit_description_book.value
+        closeEditForm()
         onReLoad()
     }
 }
-const actionRead = (button, data, action, list_type = 'list_all') => {
+function eventRead(button, list_type) {
+    const list_id = Number(button.getAttribute('value'))
+    const target__book = database[list_type].find(book => book.id === list_id)
+    loadScreenOnRead(target__book)
+    onReLoad()
+}
+function eventReaded(button, list_type) {
+    const list_id = Number(button.getAttribute('value'))
+    const index_book = database[list_type].findIndex(book => book.id === list_id)
+    database[list_type][index_book].read_finish = !database[list_type][index_book].read_finish
+    onReLoad()
+}
+
+const actionGenerate = (button, data, action, eventName) => {
     button.setAttribute('class', ' mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
+    if (action === 'close') button.classList.add('material-symbols-outlined')
+    button.setAttribute('data-action', eventName)
     button.textContent = action
     button.setAttribute('value', data.id)
-    button.onclick = (e) => {
-        const list_id = Number(button.getAttribute('value'))
-        const target__book = database[list_type].find(book => book.id === list_id)
-        loadScreenOnRead(target__book)
-        onReLoad()
-    }
 }
-const actionReaded = (button, data, action, list_type = 'list_all') => {
-    button.setAttribute('class', ' mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-    button.textContent = action
-    button.setAttribute('value', data.id)
-    button.onclick = (e) => {
-        const list_id = Number(button.getAttribute('value'))
-        const index_book = database[list_type].findIndex(book => book.id === list_id)
-        database[list_type][index_book].read_finish = !database[list_type][index_book].read_finish
-        onReLoad()
-    }
-}
-const actionEdit = (button, data, action, list_type = 'list_all') => {
-    button.setAttribute('class', 'mr-[5px] border-2 rounded border-black py-[7px] px-[7px] font-bold')
-    button.textContent = action
-    button.setAttribute('value', data.id)
-    button.onclick = () => {
-        const modal__window__container = document.getElementById('modal__window__container')
-        modal__window__container.setAttribute('class', 'modal__window__container max-w-[500px] max-h-[400px] fixed inset-10 top-[200px]  border border-black p-5  bg-white  ')
-        const edit_name_book = document.getElementById('edit_name_book')
-        const edit_description_book = document.getElementById('edit_description_book')
-        const list_id = Number(button.getAttribute('value'))
-        const target__book = database[list_type].find((book) => book.id === list_id)
-        const target__index = database[list_type].findIndex((book) => book.id === list_id)
-        edit_name_book.value = target__book.name
-        edit_description_book.textContent = target__book.description
-        const edit_form_save_button = document.getElementById('edit_form_save')
-        edit_form_save_button.onclick = (e) => {
-            database[list_type][target__index].name = edit_name_book.value
-            database[list_type][target__index].description = edit_description_book.value
-            closeEditForm()
-            onReLoad()
-        }
-    }
-}
+
 const render = (targetElement, list_type) => {
     const listContainer = document.getElementById(targetElement)
     database[list_type].forEach(book => {
@@ -182,23 +175,24 @@ const render = (targetElement, list_type) => {
         buttons__actions.forEach(action => {
             const button = document.createElement('button')
             if (action === 'Удалить') {
-                actionDelete(button, book, action, list_type)
+                actionGenerate(button, book, 'close', 'eventDelete')
             } else if (action === 'Читать') {
-                actionRead(button, book, action, list_type)
+                actionGenerate(button, book, action, 'eventRead')
             } else if (action === 'Прочитал') {
-                actionReaded(button, book, action, list_type)
+                actionGenerate(button, book, action, 'eventReaded')
             }
             else if (action === 'Ред.') {
-                actionEdit(button, book, action, list_type)
+                actionGenerate(button, book, action, 'eventEdit')
             }
             book_actions.appendChild(button)
         })
+
         // Добавление сформированного ДОМ компонента в родителя
         list__books__item.appendChild(el_h3)
         list__books__item.appendChild(book_actions)
         listContainer.appendChild(list__books__item)
-
     })
+    listContainer.onclick = onClick.bind(this, list_type)
 }
 
 const clearListType = (list_type) => {
@@ -227,8 +221,8 @@ const onRewriteForm = () => {
     const name__book = generateElement('input', [{ name: 'type', value: 'text' }, { name: 'placeholder', value: 'Заголовок' }, { name: 'class', value: 'border-2 border-black w-full mb-[10px] px-[17px] h-[50px]' }, { name: 'id', value: 'name_book' }])
     form__setting.name__input.target_v = name__book
 
-    
-    const description__book = generateElement('textarea', [{name:'placeholder',value:'Описание'}, {name:'class', value:'border-2 border-black w-full px-[17px]'}, {name:"id", value:"description_book"}, {name:'name',value:'description'}, {name:'cols', value:'30'}, {name:'rows', value:'5'}])
+
+    const description__book = generateElement('textarea', [{ name: 'placeholder', value: 'Описание' }, { name: 'class', value: 'border-2 border-black w-full px-[17px]' }, { name: "id", value: "description_book" }, { name: 'name', value: 'description' }, { name: 'cols', value: '30' }, { name: 'rows', value: '5' }])
     form__setting.description_input.target_v = description__book
 
     form__information.appendChild(name__book)
